@@ -16,12 +16,29 @@ namespace Lesson_1
 
         public string Body { get; set; }
 
-        public ResponseModel(int userId, int id, string title, string body)
+        public ResponseModel()
         {
-            UserId = userId;
-            Id = id;
-            Title = title;
-            Body = body;
+            UserId = new int();
+            Id = new int();
+            Title = null;
+            Body = null;
+        }
+
+        internal void Print()
+        {
+            Console.SetCursorPosition(Console.WindowWidth/2 - Title.Length / 2, Console.CursorTop);
+            Console.WriteLine(Title);
+            Console.WriteLine(Body);
+        }
+
+        internal List<string> ToList()
+        {
+            var list = new List<string>();
+            list.Add(UserId.ToString());
+            list.Add(Id.ToString());
+            list.Add(Title);
+            list.Add(Body);
+            return list;
         }
     }
 }
