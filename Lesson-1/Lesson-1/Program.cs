@@ -19,31 +19,36 @@ namespace Lesson_1
 
         private static int _firstPostIndex = 4;
 
-        private static int _postsListLenght = 10;
+        private static int _postsListCount = 10;
 
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             _cancelToken.CancelAfter(5000);
+            Task<string>[] responseBody = new Task<string>[_postsListCount];
 
-            File.Create(_responseFile);
+            for (int i = 0; i < _postsListCount; i++)
+            {
+                responseBody[i] = GetResponse(_firstPostIndex + i);
+            }
+            await Task.WhenAll(responseBody);
 
-            var responseBody = GetResponse();
-
-            SaveResponse(responseBody);
+            for (int i = 0; i < _postsListCount; i++)
+            {
+                SaveResponse(responseBody[i]);
+            }
 
             Console.WriteLine();
         }
 
 
-        public static async Task<string> GetResponse()
+        public static Task<string> GetResponse(int index)
         {
-            HttpResponseMessage response = new HttpResponseMessage();
-
             try
             {
-                response =
-                    await _client.GetAsync(_sourceAddress + _firstPostIndex, _cancelToken.Token);
+                var response =  _client.GetAsync(_sourceAddress + index, _cancelToken.Token);
+                var result = response.Result.Content.ReadAsStringAsync();
+                return result;
             }
             catch (TaskCanceledException)
             {
@@ -53,41 +58,29 @@ namespace Lesson_1
             {
                 Console.WriteLine(httpRequestException.Message);
             }
-
-            try
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-            }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
             return null;
         }
 
 
-        public static async Task SaveResponse(Task<string> response)
+        public static void SaveResponse(Task<string> response)
         {
-            _cancelToken.CancelAfter(10000);
             var responseModel = JsonSerializer.Deserialize<ResponseModel>(response.Result, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
-            if (File.Exists(_responseFile))
+            try
             {
-                try
-                {
-                    await File.AppendAllLinesAsync(_responseFile, responseModel.ToList(), _cancelToken.Token);
-                    await File.AppendAllTextAsync(_responseFile, "\n");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
+                File.AppendAllLines(_responseFile, responseModel.ToList());
+                File.AppendAllText(_responseFile, "\n");
+            }
+            catch (FileLoadException e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }  
