@@ -1,7 +1,6 @@
-﻿using System;
+﻿using EmployeeTimeSheet.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeTimeSheet.Repositories
 {
@@ -11,7 +10,7 @@ namespace EmployeeTimeSheet.Repositories
         T SearchByName(string name);
         IEnumerable<T> GetItems(int firstIndex, int itemsCount);
         void Add(T item);
-        void Update(Guid id);
+        void Update(Person person);
         void Delete(Guid id);
     }
 }

@@ -4,8 +4,6 @@ using EmployeeTimeSheet.Repositories.Interfaces;
 using EmployeeTimeSheet.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeTimeSheet.Services.Implementation
 {
@@ -24,7 +22,7 @@ namespace EmployeeTimeSheet.Services.Implementation
         {
             var result = new Person
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Age = sheet.Age,
                 FirstName = sheet.FirstName,
                 LastName = sheet.LastName,
@@ -41,13 +39,14 @@ namespace EmployeeTimeSheet.Services.Implementation
             return _repository.GetItem(id);
         }
 
+        public IEnumerable<Person> GetItemsByIndexPagination(int firstIndex, int indexCount)
+        {
+            return _repository.GetItems(firstIndex, indexCount);
+        }
+
         public Person GetItemByName(string firstName)
         {
-            var person = new Person
-            {
-                FirstName = firstName
-            };
-            return _repository.Search(person);
+            return _repository.SearchByName(firstName);
         }
 
         public void DeleteItem(Guid id)
@@ -55,9 +54,18 @@ namespace EmployeeTimeSheet.Services.Implementation
             _repository.Delete(id);
         }
 
-        public void UpdatePerson()
+        public void UpdatePerson(Guid id, PersonDTO person)
         {
-            throw new NotImplementedException();
+            Person repositoryPerson = new Person
+            {
+                Id = id,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Age = person.Age,
+                Company = person.Company,
+                Email = person.Email,
+            };
+            _repository.Update(repositoryPerson);
         }
     }
 }

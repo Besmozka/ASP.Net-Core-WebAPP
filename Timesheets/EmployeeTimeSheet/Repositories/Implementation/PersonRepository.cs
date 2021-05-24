@@ -86,9 +86,18 @@ namespace EmployeeTimeSheet.Repositories.Implementation
         }
 
 
-        public void Update(Guid id)
+        public void Update(Person person)
         {
-            var itemToUpdate = data.Select(x => x.Id == id);
+            int indexToUpdate = data.FindIndex(x => x.Id == person.Id);
+            data[indexToUpdate] = new Person
+            {
+                Id = person.Id,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Age = person.Age,
+                Company = person.Company,
+                Email = person.Email
+            };
         }
 
 
@@ -103,7 +112,7 @@ namespace EmployeeTimeSheet.Repositories.Implementation
 
         public Person SearchByName(string name)
         {
-            return data.FirstOrDefault(x => x.fu == item);
+            return data.FirstOrDefault(x => x.FirstName == name);
         }
     }
 }

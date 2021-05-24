@@ -4,6 +4,6 @@ namespace EmployeeTimeSheet.Repositories.Interfaces
 {
     public interface IPersonRepository : IRepository<Person>
     {
-
+        
     }
 }

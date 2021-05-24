@@ -11,16 +11,12 @@ namespace EmployeeTimeSheet.Controllers
     {
         private readonly IPersonService _personService;
 
+
         public PersonsController(IPersonService personService)
         {
             _personService = personService;
         }
-        /// <summary>
-        /// GET /persons/?skip={5}&take={10} — получение списка людей с пагинацией
-        /// PUT /persons — обновление существующей персоны в коллекции
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
 
         [HttpGet ("/{id}")]
         public IActionResult GetItem([FromRoute] Guid id)
@@ -30,10 +26,11 @@ namespace EmployeeTimeSheet.Controllers
         }
 
 
-        [HttpGet ("/")]
-        public IActionResult GetItems([FromRoute] int firstIndex, int itemsCount)
+        [HttpGet ("/get")]
+        public IActionResult GetItems([FromQuery] int skip, int take)
         {
-            return Ok();
+            var result = _personService.GetItemsByIndexPagination(skip, take);
+            return Ok(result);
         }
 
 
@@ -45,19 +42,19 @@ namespace EmployeeTimeSheet.Controllers
         }
 
 
-        [HttpPost ("/")]
-        public IActionResult CreateItem([FromBody] PersonDTO sheet)
+        [HttpPost ("/create")]
+        public IActionResult CreateItem([FromBody] PersonDTO person)
         {
-            var id = _personService.CreateItem(sheet);
+            var id = _personService.CreateItem(person);
             return Ok(id);
         }
 
 
-        [HttpPut]
-        public IActionResult UpdateItem([FromBody] PersonDTO sheet)
+        [HttpPut("/update/id/{id}")]
+        public IActionResult UpdateItem([FromRoute] Guid id, [FromBody] PersonDTO person)
         {
-            var result = _personService.UpdatePerson(id);
-            return Ok(result);
+            _personService.UpdatePerson(id, person);
+            return Ok();
         }
 
 

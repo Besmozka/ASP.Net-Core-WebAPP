@@ -31,8 +31,7 @@ namespace EmployeeTimeSheet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IPersonRepository, PersonRepository>();
-            services.AddSingleton<IPersonService, PersonService>();
-
+            services.AddScoped<IPersonService, PersonService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
