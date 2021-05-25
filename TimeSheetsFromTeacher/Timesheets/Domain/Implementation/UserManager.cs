@@ -28,13 +28,6 @@ namespace Timesheets.Domain.Implementation
             return user;
         }
 
-        public async Task<User> GetUserById(Guid id)
-        {
-            User user = await _userRepo.GetById(id);
-
-            return user;
-        }
-
         public async Task<Guid> CreateUser(CreateUserRequest request)
         {
             request.EnsureNotNull(nameof(request));
@@ -58,11 +51,6 @@ namespace Timesheets.Domain.Implementation
             {
                 return sha1.ComputeHash(Encoding.Unicode.GetBytes(password));
             }
-        }
-
-        public async Task DeleteUser(Guid id)
-        {
-            await _userRepo.DeleteUser(id);
         }
     }
 }
