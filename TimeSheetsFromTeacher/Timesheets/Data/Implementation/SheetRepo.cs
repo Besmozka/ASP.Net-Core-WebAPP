@@ -43,5 +43,10 @@ namespace Timesheets.Data.Implementation
             _context.Sheets.Update(item);
             await _context.SaveChangesAsync();
         }
+
+        public Task Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

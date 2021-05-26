@@ -33,13 +33,13 @@ namespace Timesheets.Controllers
             return Ok(response);
         }
 
-        //[HttpPut("/update")]
-        //public async Task<IActionResult> UpdateUser([FromBody] UserDTO user)
-        //{
-        //    var response = await _userManager.UpdateUserById(user);
+        [HttpPut("/update")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserDTO user)
+        {
+            await _userManager.UpdateUserById(user);
 
-        //    return Ok(response);
-        //}
+            return Ok();
+        }
 
         [HttpDelete("/delete/{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)

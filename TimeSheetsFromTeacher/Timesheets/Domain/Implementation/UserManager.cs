@@ -60,6 +60,17 @@ namespace Timesheets.Domain.Implementation
             }
         }
 
+        public async Task UpdateUserById(UserDTO userDTO)
+        {
+            User user = new User
+            {
+                Id = userDTO.Id,
+                Role = userDTO.Role,
+                Username = userDTO.Username
+            };
+            await _userRepo.UpdateUser(user);
+        }
+
         public async Task DeleteUser(Guid id)
         {
             await _userRepo.DeleteUser(id);

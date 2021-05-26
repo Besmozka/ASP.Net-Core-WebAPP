@@ -1,7 +1,52 @@
-﻿namespace Timesheets.Controllers
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Timesheets.Domain.Interfaces;
+using Timesheets.Models.Dto;
+
+namespace Timesheets.Controllers
 {
-    public class EmployeesController
+    [ApiController]
+    [Route("[controller]")]
+    public class EmployeesController : ControllerBase
     {
-        
+        private readonly IEmployeeManager _employeeManager;
+
+        public EmployeesController(IEmployeeManager employeeManager)
+        {
+            _employeeManager = employeeManager;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] EmployeeDTO request)
+        {
+            var response = await _employeeManager.CreateEmployee(request);
+
+            return Ok(response);
+        }
+
+        [HttpGet("/{id}")]
+        public async Task<IActionResult> GetUser([FromRoute] Guid id)
+        {
+            var response = await _employeeManager.GetEmployeeById(id);
+
+            return Ok(response);
+        }
+
+        [HttpPut("/update")]
+        public async Task<IActionResult> UpdateUser([FromBody] EmployeeDTO employee)
+        {
+            await _employeeManager.UpdateEmployeeById(employee);
+
+            return Ok();
+        }
+
+        [HttpDelete("/delete/{id}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
+        {
+            await _employeeManager.DeleteEmployee(id);
+
+            return Ok();
+        }
     }
 }

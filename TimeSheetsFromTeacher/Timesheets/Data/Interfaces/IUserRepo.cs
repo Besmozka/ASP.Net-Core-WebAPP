@@ -9,6 +9,7 @@ namespace Timesheets.Data.Interfaces
         Task<User> GetByLoginAndPasswordHash(string login, byte[] passwordHash);
         Task<User> GetById(Guid id);
         Task CreateUser(User user);
+        Task UpdateUser(User user);
         Task DeleteUser(Guid id);
     }
 }

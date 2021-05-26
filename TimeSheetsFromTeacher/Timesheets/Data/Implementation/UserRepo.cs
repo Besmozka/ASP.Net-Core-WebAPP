@@ -36,10 +36,19 @@ namespace Timesheets.Data.Implementation
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateUser(User user)
+        {
+            User userToUpdate = await _context.Users.FirstAsync(x => x.Id == user.Id);
+            userToUpdate.Role = user.Role;
+            userToUpdate.Username = user.Username;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteUser(Guid id)
         {
             var userToDelete = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             _context.Users.Remove(userToDelete);
+            await _context.SaveChangesAsync();
         }
     }
 }
