@@ -25,7 +25,7 @@ namespace Timesheets.Controllers
             return Ok(response);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("[controller]/{id}")]
         public async Task<IActionResult> GetUser([FromRoute] Guid id)
         {
             var response = await _employeeManager.GetEmployeeById(id);
@@ -33,7 +33,7 @@ namespace Timesheets.Controllers
             return Ok(response);
         }
 
-        [HttpPut("/update")]
+        [HttpPut("[controller]/update")]
         public async Task<IActionResult> UpdateUser([FromBody] EmployeeDTO employee)
         {
             await _employeeManager.UpdateEmployeeById(employee);
@@ -41,7 +41,7 @@ namespace Timesheets.Controllers
             return Ok();
         }
 
-        [HttpDelete("/delete/{id}")]
+        [HttpDelete("[controller]/delete/{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
             await _employeeManager.DeleteEmployee(id);
