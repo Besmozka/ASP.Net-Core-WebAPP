@@ -8,7 +8,7 @@ using Timesheets.Models.Dto;
 
 namespace Timesheets.Domain.Implementation
 {
-    public class SheetManager: ISheetManager
+    public class SheetManager : ISheetManager
     {
         private readonly ISheetRepo _sheetRepo;
 
@@ -38,9 +38,9 @@ namespace Timesheets.Domain.Implementation
                 EmployeeId = sheetRequest.EmployeeId,
                 ServiceId = sheetRequest.ServiceId
             };
-            
+
             await _sheetRepo.Add(sheet);
-            
+
             return sheet.Id;
         }
 
@@ -55,7 +55,7 @@ namespace Timesheets.Domain.Implementation
                 EmployeeId = sheetRequest.EmployeeId,
                 ServiceId = sheetRequest.ServiceId
             };
-            
+
             await _sheetRepo.Update(sheet);
         }
     }

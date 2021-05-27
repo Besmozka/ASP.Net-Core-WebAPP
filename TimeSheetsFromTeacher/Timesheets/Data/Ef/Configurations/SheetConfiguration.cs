@@ -4,7 +4,7 @@ using Timesheets.Models;
 
 namespace Timesheets.Data.Ef.Configurations
 {
-    public class SheetConfiguration: IEntityTypeConfiguration<Sheet>
+    public class SheetConfiguration : IEntityTypeConfiguration<Sheet>
     {
         public void Configure(EntityTypeBuilder<Sheet> builder)
         {
@@ -23,12 +23,12 @@ namespace Timesheets.Data.Ef.Configurations
                 .HasOne(sheet => sheet.Contract)
                 .WithMany(contract => contract.Sheets)
                 .HasForeignKey("ContractId");
-            
+
             builder
                 .HasOne(sheet => sheet.Service)
                 .WithMany(service => service.Sheets)
                 .HasForeignKey("ServiceId");
-            
+
             builder
                 .HasOne(sheet => sheet.Employee)
                 .WithMany(employee => employee.Sheets)

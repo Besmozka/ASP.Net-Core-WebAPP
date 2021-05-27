@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Timesheets.Models.Dto.Authentication
 {
@@ -42,8 +42,8 @@ namespace Timesheets.Models.Dto.Authentication
                 issuer: Issuer,
                 audience: Audience,
                 notBefore: now,
-                claims:claims,
-                expires:now.Add(TimeSpan.FromMinutes(Lifetime)),
+                claims: claims,
+                expires: now.Add(TimeSpan.FromMinutes(Lifetime)),
                 signingCredentials: new SigningCredentials(GetSymmetricSecurityKey(),
                     SecurityAlgorithms.HmacSha256));
 

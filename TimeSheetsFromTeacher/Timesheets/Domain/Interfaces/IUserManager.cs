@@ -18,7 +18,7 @@ namespace Timesheets.Domain.Interfaces
 
         /// <summary> Обновляет данные пользователя по ID </summary>
         Task UpdateUserById(UserDTO userDTO);
-        
+
         /// <summary> Удаляет пользователя через ID </summary>
         Task DeleteUser(Guid id);
     }

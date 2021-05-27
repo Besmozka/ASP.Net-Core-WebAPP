@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TimeSheets</name>
+    </assembly>
+    <members>
+        <member name="M:Timesheets.Controllers.SheetsController.Create(Timesheets.Models.Dto.SheetRequest)">
+            <summary> Возвращает запись табеля </summary>
+        </member>
+        <member name="M:Timesheets.Controllers.SheetsController.Update(System.Guid,Timesheets.Models.Dto.SheetRequest)">
+            <summary> Обновляет запись табеля </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IEmployeeManager.GetEmployeeById(System.Guid)">
+            <summary> Возвращает пользователя по ID </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IEmployeeManager.CreateEmployee(Timesheets.Models.Dto.EmployeeDTO)">
+            <summary> Создает нового пользователя </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IEmployeeManager.UpdateEmployeeById(Timesheets.Models.Dto.EmployeeDTO)">
+            <summary> Обновляет данные пользователя по ID </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IEmployeeManager.DeleteEmployee(System.Guid)">
+            <summary> Удаляет пользователя через ID </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IUserManager.GetUser(Timesheets.Models.Dto.LoginRequest)">
+            <summary> Возвращает пользователя по логину и паролю </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IUserManager.GetUserById(System.Guid)">
+            <summary> Возвращает пользователя по ID </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IUserManager.CreateUser(Timesheets.Models.Dto.CreateUserRequest)">
+            <summary> Создает нового пользователя </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IUserManager.UpdateUserById(Timesheets.Models.Dto.UserDTO)">
+            <summary> Обновляет данные пользователя по ID </summary>
+        </member>
+        <member name="M:Timesheets.Domain.Interfaces.IUserManager.DeleteUser(System.Guid)">
+            <summary> Удаляет пользователя через ID </summary>
+        </member>
+        <member name="T:Timesheets.Models.Client">
+            <summary> Информация о владельце контракта </summary>
+        </member>
+        <member name="T:Timesheets.Models.Contract">
+            <summary> Информация о договоре с клиентом </summary>
+        </member>
+        <member name="T:Timesheets.Models.Dto.LoginRequest">
+            <summary> Запрос аутентификации пользователя по логину и паролю </summary>
+        </member>
+        <member name="T:Timesheets.Models.Dto.LoginResponse">
+            <summary> Информация об аутентификации пользователя </summary>
+        </member>
+        <member name="T:Timesheets.Models.Dto.UserRole">
+            <summary> Информация о роли пользователя </summary>
+        </member>
+        <member name="T:Timesheets.Models.Employee">
+            <summary> Информация о сотруднике </summary>
+        </member>
+        <member name="T:Timesheets.Models.Service">
+            <summary> Информация о предоставляемой услуге в рамках контракта </summary>
+        </member>
+        <member name="T:Timesheets.Models.Sheet">
+            <summary> Информация о затраченном времени сотрудника </summary>
+        </member>
+        <member name="T:Timesheets.Models.User">
+            <summary> Информация о пользователе системы </summary>
+        </member>
+    </members>
+</doc>

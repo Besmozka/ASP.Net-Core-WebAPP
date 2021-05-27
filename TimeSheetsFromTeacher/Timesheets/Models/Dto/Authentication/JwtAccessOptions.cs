@@ -1,7 +1,7 @@
 ﻿namespace Timesheets.Models.Dto.Authentication
 {
-    public class JwtAccessOptions: JwtOptions
+    public class JwtAccessOptions : JwtOptions
     {
-        
+
     }
 }

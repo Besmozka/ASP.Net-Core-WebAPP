@@ -4,7 +4,7 @@ using Timesheets.Models;
 
 namespace Timesheets.Data.Ef.Configurations
 {
-    public class UserConfiguration:IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {

@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System;
 using Timesheets.Data.Ef;
 using Timesheets.Data.Implementation;
 using Timesheets.Data.Interfaces;
@@ -22,7 +22,7 @@ namespace Timesheets.Infrastructure.Extensions
             {
                 options.UseNpgsql(
                     configuration.GetConnectionString("Postgres"),
-                    b=>b.MigrationsAssembly("Timesheets"));
+                    b => b.MigrationsAssembly("Timesheets"));
             });
         }
 
@@ -62,12 +62,12 @@ namespace Timesheets.Infrastructure.Extensions
             services.AddScoped<IContractRepo, ContractRepo>();
             services.AddScoped<IUserRepo, UserRepo>();
         }
-        
+
         public static void ConfigureBackendSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Timesheets", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Timesheets", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Timesheets.Domain.Interfaces;
 using Timesheets.Models.Dto;
 
@@ -8,7 +8,7 @@ namespace Timesheets.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsersController: ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserManager _userManager;
 
@@ -25,7 +25,7 @@ namespace Timesheets.Controllers
             return Ok(response);
         }
 
-        [HttpGet ("/{id}")]
+        [HttpGet("/{id}")]
         public async Task<IActionResult> GetUser([FromRoute] Guid id)
         {
             var response = await _userManager.GetUserById(id);

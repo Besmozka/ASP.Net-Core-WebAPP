@@ -7,7 +7,7 @@ using Timesheets.Models;
 
 namespace Timesheets.Data.Implementation
 {
-    public class ContractRepo:IContractRepo
+    public class ContractRepo : IContractRepo
     {
         private readonly TimesheetDbContext _dbContext;
 
@@ -36,7 +36,7 @@ namespace Timesheets.Data.Implementation
             _dbContext.Contracts.Update(item);
             await _dbContext.SaveChangesAsync();
         }
-        
+
 
         public async Task<bool?> CheckContractIsActive(Guid id)
         {

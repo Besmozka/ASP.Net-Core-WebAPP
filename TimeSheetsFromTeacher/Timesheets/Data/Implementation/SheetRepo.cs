@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Timesheets.Data.Ef;
 using Timesheets.Data.Interfaces;
 using Timesheets.Models;
 
 namespace Timesheets.Data.Implementation
 {
-    public class SheetRepo: ISheetRepo
+    public class SheetRepo : ISheetRepo
     {
         private readonly TimesheetDbContext _context;
 
@@ -27,8 +26,8 @@ namespace Timesheets.Data.Implementation
 
         public async Task<IEnumerable<Sheet>> GetItems()
         {
-            var result =  await _context.Sheets.ToListAsync();
-            
+            var result = await _context.Sheets.ToListAsync();
+
             return result;
         }
 

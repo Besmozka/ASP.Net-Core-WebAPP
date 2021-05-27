@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 using Timesheets.Domain.Interfaces;
 using Timesheets.Infrastructure.Extensions;
 using Timesheets.Models;
@@ -12,7 +12,7 @@ using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegiste
 
 namespace Timesheets.Domain.Implementation
 {
-    public class LoginManager: ILoginManager
+    public class LoginManager : ILoginManager
     {
         private readonly JwtAccessOptions _jwtAccessOptions;
 
@@ -20,7 +20,7 @@ namespace Timesheets.Domain.Implementation
         {
             _jwtAccessOptions = jwtAccessOptions.Value;
         }
-        
+
         public async Task<LoginResponse> Authenticate(User user)
         {
             var claims = new List<Claim>

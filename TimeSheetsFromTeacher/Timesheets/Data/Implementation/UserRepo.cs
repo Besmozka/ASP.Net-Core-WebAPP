@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Timesheets.Data.Ef;
 using Timesheets.Data.Interfaces;
 using Timesheets.Models;
 
 namespace Timesheets.Data.Implementation
 {
-    public class UserRepo: IUserRepo
+    public class UserRepo : IUserRepo
     {
         private readonly TimesheetDbContext _context;
 
@@ -19,9 +19,9 @@ namespace Timesheets.Data.Implementation
 
         public async Task<User> GetByLoginAndPasswordHash(string login, byte[] passwordHash)
         {
-            return 
+            return
                 await _context.Users
-                    .Where(x=> x.Username == login && x.PasswordHash == passwordHash)
+                    .Where(x => x.Username == login && x.PasswordHash == passwordHash)
                     .FirstOrDefaultAsync();
         }
 

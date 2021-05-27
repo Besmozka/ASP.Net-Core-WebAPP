@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Timesheets.Models;
 using Timesheets.Models.Dto;
@@ -16,7 +15,7 @@ namespace Timesheets.Domain.Interfaces
 
         /// <summary> Обновляет данные пользователя по ID </summary>
         Task UpdateEmployeeById(EmployeeDTO employeeDTO);
-        
+
         /// <summary> Удаляет пользователя через ID </summary>
         Task DeleteEmployee(Guid id);
     }

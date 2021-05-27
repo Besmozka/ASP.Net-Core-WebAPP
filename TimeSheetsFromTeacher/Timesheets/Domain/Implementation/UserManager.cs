@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ using Timesheets.Models.Dto;
 
 namespace Timesheets.Domain.Implementation
 {
-    public class UserManager: IUserManager
+    public class UserManager : IUserManager
     {
         private readonly IUserRepo _userRepo;
 
@@ -38,7 +37,7 @@ namespace Timesheets.Domain.Implementation
         public async Task<Guid> CreateUser(CreateUserRequest request)
         {
             request.EnsureNotNull(nameof(request));
-            
+
             var user = new User
             {
                 Id = Guid.NewGuid(),
