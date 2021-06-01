@@ -53,5 +53,10 @@ namespace Timesheets.Data.Implementation
 
             return sheets;
         }
+
+        public Task Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

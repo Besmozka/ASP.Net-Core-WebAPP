@@ -29,13 +29,16 @@ namespace Timesheets.Data.Implementation
 
         public async Task Add(Invoice item)
         {
-            
-
             await _context.Invoices.AddAsync(item);
             await _context.SaveChangesAsync();
         }
 
         public Task Update(Invoice item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(Guid id)
         {
             throw new NotImplementedException();
         }
