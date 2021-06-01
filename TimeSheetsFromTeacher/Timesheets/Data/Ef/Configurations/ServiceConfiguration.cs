@@ -4,7 +4,7 @@ using Timesheets.Models;
 
 namespace Timesheets.Data.Ef.Configurations
 {
-    public class ServiceConfiguration:IEntityTypeConfiguration<Service>
+    public class ServiceConfiguration : IEntityTypeConfiguration<Service>
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {

@@ -4,7 +4,7 @@ using Timesheets.Models;
 
 namespace Timesheets.Data.Ef.Configurations
 {
-    public class InvoiceConfiguration:IEntityTypeConfiguration<Invoice>
+    public class InvoiceConfiguration : IEntityTypeConfiguration<Invoice>
     {
         public void Configure(EntityTypeBuilder<Invoice> builder)
         {

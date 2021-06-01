@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using Timesheets.Domain.Interfaces;
 using Timesheets.Models.Dto;
 
@@ -10,11 +10,11 @@ namespace Timesheets.Controllers
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class SheetsController: ControllerBase
+    public class SheetsController : ControllerBase
     {
         private readonly ISheetManager _sheetManager;
         private readonly IContractManager _contractManager;
-        
+
         public SheetsController(ISheetManager sheetManager, IContractManager contractManager)
         {
             _sheetManager = sheetManager;
@@ -25,10 +25,10 @@ namespace Timesheets.Controllers
         public IActionResult Get([FromQuery] Guid id)
         {
             var result = _sheetManager.GetItem(id);
-            
+
             return Ok(result);
         }
-        
+
         [Authorize(Roles = "user")]
         [HttpGet]
         public async Task<IActionResult> GetItems()
@@ -43,11 +43,11 @@ namespace Timesheets.Controllers
         {
             var isAllowedToCreate = await _contractManager.CheckContractIsActive(sheet.ContractId);
 
-            if (isAllowedToCreate !=null && !(bool)isAllowedToCreate)
+            if (isAllowedToCreate != null && !(bool)isAllowedToCreate)
             {
                 return BadRequest($"Contract {sheet.ContractId} is not active or not found.");
             }
-            
+
             var id = await _sheetManager.Create(sheet);
             return Ok(id);
         }
@@ -58,7 +58,7 @@ namespace Timesheets.Controllers
         {
             var isAllowedToCreate = await _contractManager.CheckContractIsActive(sheet.ContractId);
 
-            if (isAllowedToCreate !=null && !(bool)isAllowedToCreate)
+            if (isAllowedToCreate != null && !(bool)isAllowedToCreate)
             {
                 return BadRequest($"Contract {sheet.ContractId} is not active or not found.");
             }

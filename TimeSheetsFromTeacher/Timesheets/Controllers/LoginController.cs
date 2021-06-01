@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Timesheets.Domain.Interfaces;
 using Timesheets.Models.Dto;
 
@@ -7,7 +7,7 @@ namespace Timesheets.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LoginController: ControllerBase
+    public class LoginController : ControllerBase
     {
         private readonly IUserManager _userManager;
         private readonly ILoginManager _loginManager;

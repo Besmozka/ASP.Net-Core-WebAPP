@@ -4,7 +4,7 @@ using Timesheets.Models;
 
 namespace Timesheets.Data.Ef
 {
-    public class TimesheetDbContext: DbContext
+    public class TimesheetDbContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Contract> Contracts { get; set; }
@@ -13,7 +13,7 @@ namespace Timesheets.Data.Ef
         public DbSet<Sheet> Sheets { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public TimesheetDbContext(DbContextOptions<TimesheetDbContext> options):base(options)
+        public TimesheetDbContext(DbContextOptions<TimesheetDbContext> options) : base(options)
         {
         }
 

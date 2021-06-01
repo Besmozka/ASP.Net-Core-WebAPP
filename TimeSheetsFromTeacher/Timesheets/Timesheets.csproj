@@ -2,6 +2,17 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>TimeSheets</AssemblyName>
+        <Product>Product</Product>
+        <Company>Company</Company>
+        <Authors>Users</Authors>
+        <PackageId />
+        <RootNamespace>Timesheets</RootNamespace>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DocumentationFile>G:\GitHub\C# lessons\ASP.Net-Core-WebAPP\TimeSheetsFromTeacher\Timesheets\TimeSheets.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,5 +26,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.0" />
     </ItemGroup>
+
+    <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
