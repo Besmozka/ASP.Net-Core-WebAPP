@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Timesheets.Domain.Interfaces;
@@ -17,32 +18,36 @@ namespace Timesheets.Controllers
             _employeeManager = employeeManager;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] EmployeeDTO request)
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO request)
         {
             var response = await _employeeManager.CreateEmployee(request);
 
             return Ok(response);
         }
 
+        [Authorize(Roles = "admin,client")]
         [HttpGet("[controller]/{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] Guid id)
+        public async Task<IActionResult> GetEmployee([FromRoute] Guid id)
         {
             var response = await _employeeManager.GetEmployeeById(id);
 
             return Ok(response);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("[controller]/update")]
-        public async Task<IActionResult> UpdateUser([FromBody] EmployeeDTO employee)
+        public async Task<IActionResult> UpdateEmployee([FromBody] EmployeeDTO employee)
         {
             await _employeeManager.UpdateEmployeeById(employee);
 
             return Ok();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("[controller]/delete/{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
         {
             await _employeeManager.DeleteEmployee(id);
 

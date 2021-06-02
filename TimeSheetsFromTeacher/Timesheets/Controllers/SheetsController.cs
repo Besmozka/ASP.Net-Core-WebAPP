@@ -21,6 +21,8 @@ namespace Timesheets.Controllers
             _contractManager = contractManager;
         }
 
+        /// <summary> Возвращает запись табеля </summary>
+        [Authorize(Roles = "user,client")]
         [HttpGet("{id}")]
         public IActionResult Get([FromQuery] Guid id)
         {
@@ -28,8 +30,8 @@ namespace Timesheets.Controllers
             
             return Ok(result);
         }
-        
-        [Authorize(Roles = "user")]
+
+        [Authorize(Roles = "user,client")]
         [HttpGet]
         public async Task<IActionResult> GetItems()
         {
@@ -37,7 +39,7 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Возвращает запись табеля </summary>
+        [Authorize(Roles = "user")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] SheetRequest sheet)
         {
@@ -53,6 +55,7 @@ namespace Timesheets.Controllers
         }
 
         /// <summary> Обновляет запись табеля </summary>
+        [Authorize(Roles = "user,admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] SheetRequest sheet)
         {

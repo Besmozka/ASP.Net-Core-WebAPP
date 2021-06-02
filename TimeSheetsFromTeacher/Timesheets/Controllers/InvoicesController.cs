@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Timesheets.Domain.Interfaces;
 using Timesheets.Models.Dto;
@@ -17,6 +18,7 @@ namespace Timesheets.Controllers
         }
         
         /// <summary> Создает клиентский счет </summary>
+        [Authorize(Roles = "user")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] InvoiceRequest invoiceRequest)
         {

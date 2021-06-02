@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Timesheets.Domain.Interfaces;
@@ -17,6 +18,7 @@ namespace Timesheets.Controllers
             _userManager = userManager;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
@@ -25,7 +27,8 @@ namespace Timesheets.Controllers
             return Ok(response);
         }
 
-        [HttpGet("[controller]/{id}")]
+        [Authorize(Roles = "client,admin")]
+        [HttpGet("user/{id}")]
         public async Task<IActionResult> GetUser([FromRoute] Guid id)
         {
             var response = await _userManager.GetUserById(id);
@@ -33,7 +36,8 @@ namespace Timesheets.Controllers
             return Ok(response);
         }
 
-        [HttpPut("[controller]/update")]
+        [Authorize(Roles = "admin")]
+        [HttpPut("user/update")]
         public async Task<IActionResult> UpdateUser([FromBody] UserDTO user)
         {
             await _userManager.UpdateUserById(user);
@@ -41,7 +45,8 @@ namespace Timesheets.Controllers
             return Ok();
         }
 
-        [HttpDelete("[controller]/delete/{id}")]
+        [Authorize(Roles = "admin")]
+        [HttpDelete("user/delete/{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
             await _userManager.DeleteUser(id);
