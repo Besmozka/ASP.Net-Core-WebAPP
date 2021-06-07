@@ -14,9 +14,11 @@ namespace Timesheets.Infrastructure.Validation
         {
             RuleFor(x => x.DateEnd)
                 .GreaterThan(x => x.DateStart)
-                .WithMessage(ValidationMessages.InvoiceDate);
+                .WithMessage(ValidationMessages.InvoiceDate)
+                .WithErrorCode("E-IR-1");
             RuleFor(x => x.ContractId)
-                .NotNull();
+                .NotNull()
+                .WithErrorCode("E-IR-2");
         }
     }
 }

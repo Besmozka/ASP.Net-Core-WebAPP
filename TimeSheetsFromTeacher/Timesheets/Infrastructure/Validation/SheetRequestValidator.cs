@@ -10,11 +10,14 @@ namespace Timesheets.Infrastructure.Validation
         {
             RuleFor(x => x.Amount)
                 .InclusiveBetween(1, 8)
-                .WithMessage(ValidationMessages.SheetAmount);
+                .WithMessage(ValidationMessages.SheetAmount)
+                .WithErrorCode("E-SR-1");
             RuleFor(x => x.Date)
-                .NotNull();
+                .NotEmpty()
+                .WithErrorCode("E-SR-2");
             RuleFor(x => x.EmployeeId)
-                .NotNull();
+                .NotEmpty()
+                .WithErrorCode("E-SR-2");
         }
     }
 }
