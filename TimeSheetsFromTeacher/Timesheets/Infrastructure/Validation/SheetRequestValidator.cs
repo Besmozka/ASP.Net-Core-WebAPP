@@ -11,6 +11,10 @@ namespace Timesheets.Infrastructure.Validation
             RuleFor(x => x.Amount)
                 .InclusiveBetween(1, 8)
                 .WithMessage(ValidationMessages.SheetAmount);
+            RuleFor(x => x.Date)
+                .NotNull();
+            RuleFor(x => x.EmployeeId)
+                .NotNull();
         }
     }
 }
